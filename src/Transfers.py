@@ -72,3 +72,21 @@ class Transfer:
             else:
                 new_list.append(info)
         return ' '.join(new_list)
+
+    def get_last_info(self):
+        """
+        Get 5 formatted info about transfers
+        :return: text for user
+        """
+        list_transfers = self.list_transfer
+        new_list = []
+        for info in list_transfers:
+            new_list.append(f"\n{self.print_first_line(info['date'], info['description'])}\n")
+            if info.get('from') is None:
+                info['from'] = "операция со счетом"
+
+            info_from = self.hide_card_info(info.get('from'))
+            info_to = self.hide_card_info(info.get('to'))
+            new_list.append(f"{info_from} -> {info_to}\n")
+            new_list.append(f"{info['operationAmount']['amount']} {info['operationAmount']['currency']['name']}\n")
+        return ''.join(new_list)
