@@ -32,3 +32,14 @@ class Transfer:
                 new_list.append(info)
         self.list_transfer = new_list
         return self.list_transfer
+
+    def sort_list(self, clean_transfers_list):
+        """
+        Sort transfers list
+        :param clean_transfers_list: clean transfers list
+        :return: self.list_transfer fith 5 sort last transfers
+        """
+        sorted(clean_transfers_list, key=lambda dictionary: dictionary['date'], reverse=True)
+        self.list_transfer = sorted(clean_transfers_list, key=lambda dictionary: dictionary['date'], reverse=True)
+        self.list_transfer = self.list_transfer[:5]
+        return self.list_transfer
