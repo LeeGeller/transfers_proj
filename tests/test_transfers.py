@@ -14,3 +14,10 @@ def test_clean_transfers_list():
     assert Transfer().clean_transfers_list([{'state': 'EXECUTED'}, {}, {'state': 'CANCELED'}]) == [
         {'state': 'EXECUTED'}]
     assert len(transfers.list_transfer) == 3
+
+
+def test_sort_list():
+    assert Transfer().sort_list([{'date': '2018-01-21T01:10:28.317704'}, {'date': '2018-12-18T17:07:09.800800'},
+                                 {'date': '2019-12-08T22:46:21.935582'}]) == [{'date': '2019-12-08T22:46:21.935582'},
+                                                                              {'date': '2018-12-18T17:07:09.800800'},
+                                                                              {'date': '2018-01-21T01:10:28.317704'}]
