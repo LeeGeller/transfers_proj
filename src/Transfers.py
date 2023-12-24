@@ -19,3 +19,16 @@ class Transfer:
         with open(data_path, 'r', encoding='UTF-8') as data_file:
             self.list_transfer = json.load(data_file)
         return self.list_transfer
+
+    def clean_transfers_list(self, transfers_list):
+        """
+        Clean None dict, info with CANCELED state and other artifacts
+        :param transfers_list: user's transfer list
+        :return: clean self.list_transfer
+        """
+        new_list = []
+        for info in transfers_list:
+            if info.get('state') == 'EXECUTED':
+                new_list.append(info)
+        self.list_transfer = new_list
+        return self.list_transfer
