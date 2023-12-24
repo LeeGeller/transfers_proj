@@ -30,3 +30,9 @@ def test_print_first_line():
 def test_hide_card_info():
     assert Transfer().hide_card_info("Visa Gold 7305799447374042") == "Visa Gold 7305 79** **** 4042"
     assert Transfer().hide_card_info("Счет 96292138399386853355") == "Счет **3355"
+
+
+def test_get_last_info():
+    transfers = Transfer()
+    transfers.get_transfers_list(DATA_TEST_LIST)
+    assert transfers.get_last_info() == f"\n05.11.2019 Открытие вклада\nоперация со счетом -> Счет **8381\n21344.35 руб.\n"
