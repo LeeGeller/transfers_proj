@@ -55,3 +55,20 @@ class Transfer:
         date_class = date.fromisoformat(date_info)
         date_formatted = date_class.strftime("%d.%m.%Y")
         return f"{date_formatted} {description}"
+
+    def hide_card_info(self, card_info):
+        """
+        Get hide info about card's number
+        :param card_info: name and number card
+        :return: name card and hide number
+        """
+        list_card_info = card_info.split()
+        new_list = []
+        for info in list_card_info:
+            if 'счет' in card_info.lower() and info.isdigit():
+                new_list.append(f'**{info[-4:]}')
+            elif 'счет' not in card_info.lower() and info.isdigit():
+                new_list.append(f'{info[:4]} {info[4:6]}** **** {info[-4:]}')
+            else:
+                new_list.append(info)
+        return ' '.join(new_list)
